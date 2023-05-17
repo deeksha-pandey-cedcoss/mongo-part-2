@@ -1,0 +1,70 @@
+<!-- bootstrap included here -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Phalcon Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <?php echo $this->getContent(); ?>
+    </div>
+</body>
+<script>
+    $("#addRow").click(function() {
+        let html = '';
+        html += '<div id="inputFormRow">';
+        html += '<div class="input-group mb-3">';
+        html += '<input type="text" name="titlekey[]" class="form-control m-input" placeholder="Enter key">';
+        html += '<input type="text" name="titlevalue[]" class="form-control m-input" placeholder="Enter value">';
+        html += '<div class="input-group-append">';
+        html += '<button id="removeRow" type="button" class="btn btn-danger">-</button>';
+        html += '</div>';
+        html += '</div>';
+
+        $('#newRow').append(html);
+    });
+
+    // remove row
+    $(document).on('click', '#removeRow', function() {
+        $(this).closest('#inputFormRow').remove();
+    });
+    $("#addRowagain").click(function() {
+        let html = '';
+        html += '<div id="inputFormRow">';
+        html += '<div class="input-group mb-3">';
+        html += '<select name="varkey[]" id="rows"><option value="size">size</option><option value="color">color</option><option value="fabric">fabric</option></select>';
+        html += '<input type="text" name="varvalue[]" class="form-control m-input" placeholder="Attribute value">';
+        html += '<input type="text" name="varprice[]" class="form-control m-input" placeholder="Attribute price">';
+        html += '<div class="input-group-append">';
+        html += '<button id="removeRow" type="button" class="btn btn-danger">-</button>';
+        html += '</div>';
+        html += '</div>';
+
+        $('#newRowagain').append(html);
+    });
+
+    // remove row
+    $(document).on('click', '#removeRow', function() {
+        $(this).closest('#inputFormRow').remove();
+    });
+    $(document).on('click', '#pro', function() {
+        let e = $("#pro").val();
+        $.ajax ({
+            url:"/order/generate",
+            data:"data="+e,
+            datatype:"text",
+            type:"post",
+            success:function(data)
+            {
+                window.location="/order/index";
+            }
+        })
+    });
+</script>
+
+</html>

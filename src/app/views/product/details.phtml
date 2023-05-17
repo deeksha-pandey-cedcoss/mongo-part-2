@@ -1,0 +1,23 @@
+
+<div class="card bg-secondary p-3 text-white" style="width: 25rem;">
+<div class="card-header"><u><h4 class="card-title">Product Name :<?php echo $data['name'] ?></u></h4></div>
+    <div class="card-body ">
+        
+        <p class="card-text">Category :<?php echo $data['category'] ?></p>
+        <p class="card-text">Price : <?php echo $data['price'] ?></p>
+        <p class="card-text">Stock :<?php echo $data['stock'] ?></p>
+        <h4 class="card-title"><u>Meta Details:</h4></u><?php
+                                                foreach ($data['meta'] as $key => $value) {
+                                                    echo "<p class='card-text'>Meta-Key:$key => Meta-Value:$value</p>";
+                                                }
+                                                ?>
+        <h4 class="card-title"><u>Meta Details</h4></u><?php
+                                                foreach ($data['attributes'] as $key => $value) {
+                                          echo "<p class='card-text'>Attribute-key:$key => Attribute-value:$value</p>";
+                                                }
+                                                ?>
+        <a href="/product/view" class="btn btn-info">Go somewhere</a>
+    </div>
+</div>
+
+

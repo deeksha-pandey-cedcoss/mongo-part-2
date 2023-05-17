@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- main section for Orders  -->
+
+<body>
+    <?php
+    session_start();
+    echo $this->tag->linkTo(['product', 'Add products Here!', 'class' => 'm-3 btn btn-info']);
+    echo $this->tag->linkTo(['order', 'Place Order Here!', 'class' => 'm-3 btn btn-primary']);
+    echo  $this->tag->linkTo(['index', 'Homepage', 'class' => 'm-3 btn btn-info']);
+    echo  $this->tag->linkTo(['order/view', 'View Orders', 'class' => 'btn btn-primary']);
+
+    ?>
+    <h2>
+        Add Orders
+    </h2>
+    <h2>Place orders using this form</h2>
+    <?php echo $this->tag->form("order/add"); ?>
+    <p>
+        <label for="product_name">Product-name</label>
+        <?php
+        $collection = $this->mongo->products->find();
+
+        echo "<select name='products' id='pro' class='products form-control' >";
+        if (isset($_SESSION['item_id'])) {
+
+            echo   "<option value=" . $_SESSION['item_id'] . ">" . $_SESSION['item'] . "</option>";
+        }
+        foreach ($collection as $key => $value) {
+            echo   "<option value=" . $value['_id'] . ">" . $value['name'] . "</option>";
+        }
+        echo "</select>";
+        ?>
+    </p>
+    <p>
+        <label for="variation">Variations If any :</label>
+        <?php
+        echo "<select name='variaion' id='var' class='products form-control' >";
+        if (isset($_SESSION['details'])) {
+            foreach ($_SESSION['details'] as $key => $value) {
+                echo   "<option value=" . $value . ">" . $value . "</option>";
+            }
+        }
+        echo "</select>";
+        ?>
+    </p>
+    <br>
+    <p>
+        <label for="customer_name">Customer-Name</label>
+        <?php echo $this->tag->textfield(["customer_name", "class" => "form-control"]); ?>
+    </p>
+    <p>
+        <label for="quantity">Quantity</label>
+        <?php echo $this->tag->numericfield(["quantity", "class" => "form-control"]); ?>
+    </p>
+    <p>
+        <?php
+        echo $this->tag->submitButton(["Place Order", 'class' => 'btn btn-primary']);
+     
+        ?>
+    </p>
+   
+    </form>
+</body>
+
+</html>

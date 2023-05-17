@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- main section for Products  -->
+
+<body>
+
+
+    <h2>Add products using this form</h2>
+    <form method="post" action="/product/add" id="detail">
+        <?php echo $this->tag->form("product/add"); ?>
+        <p>
+            <label for="name">Name</label>
+            <?php echo $this->tag->textfield(["name", "placeholder" => "Product name", "class" => "form-control"]); ?>
+        </p>
+        <p>
+            <label for="category">Category Name</label>
+            <?php echo $this->tag->textfield([
+                "category", "placeholder" => "Category name",
+                "class" => "form-control"
+            ]); ?>
+        </p>
+        <p>
+            <label for="price">Price</label>
+            <?php echo $this->tag->numericfield(["price", "placeholder" => "Price", "class" => "form-control"]); ?>
+        </p>
+        <p>
+            <label for="stock">Stock</label>
+            <?php echo $this->tag->numericfield(["stock", "placeholder" => "Stock", "class" => "form-control"]); ?>
+        </p>
+        <label for="Additional_fields">Additional-fields</label>
+
+        <div id="inputFormRow">
+            <div class="input-group mb-1">
+                <input type="text" name="titlekey[]" class="form-control m-input"
+                 placeholder="Enter key" autocomplete="off">
+                <input type="text" name="titlevalue[]" class="form-control m-input"
+                 placeholder="Enter value" autocomplete="off">
+                <div class="input-group-append">
+                    <button id="removeRow" type="button" class="btn btn-danger">-</button>
+                </div>
+            </div>
+        </div>
+        <div id="newRow"></div>
+        <button id="addRow" type="button" class="btn btn-info">+</button>
+        <br>
+        <label for="Variations">Variations</label>
+        <div id="inputFormRowagain">
+            <div class="input-group mb-1">
+            <select name="varkey[]" id="rows" class ="form-contol">
+                    <option value="size">size</option>
+                    <option value="color">color</option>
+                    <option value="fabric">fabric</option>
+                </select>
+                <input type="text" name="varvalue[]" class="form-control m-input"
+                 placeholder="Attribute value" autocomplete="off">
+                <input type="text" name="varprice[]" class="form-control m-input"
+                 placeholder="Attribute price" autocomplete="off">
+                <div class="input-group-append">
+                    <button id="removeRow" type="button" class="btn btn-danger">-</button>
+                </div>
+            </div>
+        </div>
+        <div id="newRowagain"></div>
+        <button id="addRowagain" type="button" class="btn btn-info">+</button>
+        <br>
+        <br>
+        <p>
+            <?php echo $this->tag->submitButton(["ADD", 'class' => 'btn btn-info']);
+               echo $this->tag->linkTo(['index','Home!',"class" => "btn btn-info m-3"]);
+            ?>
+        </p>
+        <p>
+
+    </form>
+</body>
+</html>
+

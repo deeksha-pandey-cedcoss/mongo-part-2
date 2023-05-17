@@ -1,0 +1,22 @@
+<form action="/product/search" class="m-3" method="post">
+    <div class="input-group">
+        <input type="search" class="form-control rounded"
+         placeholder="Search" name="val" aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-outline-primary">search</button>
+    </div>
+</form>
+<?php
+
+echo "<table class='table table-success table-striped'> <tr><th> Name </th><th>Category Name</th>
+        <th>Price</th><th>Stock</th><th>Additional Details</th><th>Action</th>
+        </tr><tbody>";
+
+foreach ($data as $current) {
+    echo "<tr><td>$current[name]</td><td>$current[category]</td><td>$current[price]</td><td>$current[stock]</td>
+<td><a href ='/product/details?id=" . $current['_id'] . "'>More-info</a></td><td>
+<a href ='/product/delete?id=" . $current['_id'] . "'>Delete</a>
+<a href ='/product/update?id=" . $current['_id'] . "'>Update</a></td></tr>";
+}
+
+echo "</tbody></table>";
+echo $this->tag->linkTo(['index', 'Home Page!','class' => 'btn btn-primary m-3']);

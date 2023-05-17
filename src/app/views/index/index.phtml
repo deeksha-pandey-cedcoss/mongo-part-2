@@ -1,0 +1,24 @@
+<?php
+echo "<h1>Hello User Welcome</h1>";
+echo PHP_EOL;
+// link  page
+echo $this->tag->linkTo(
+    ['product',
+    'addd poducts!',
+    "class" => "btn btn-info m-3"]
+);
+echo $this->tag->linkTo(
+    ['order',
+    'Add Order!',
+    "class" => "btn btn-info m-3"]
+);
+echo $this->tag->linkTo(
+    ['product/view',
+    'View Product!',
+    "class" => "btn btn-info m-3"]
+);
+echo $this->tag->linkTo(
+    ['order/view',
+    'View Order!',
+    "class" => "btn btn-info m-3"]
+);

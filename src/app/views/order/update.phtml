@@ -1,0 +1,74 @@
+<?php
+$id = $_GET['id'];
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- main section for Orders  -->
+
+<body>
+    <?php
+    echo $this->tag->linkTo(['product', 'Add products Here!', 'class' => 'm-3 btn btn-primary']);
+    echo $this->tag->linkTo(['order', 'Place Order Here!', 'class' => 'm-3 btn btn-primary']);
+    echo  $this->tag->linkTo(['index', 'Homepage', 'class' => 'm-3 btn btn-primary']);
+    echo  $this->tag->linkTo(['order/view', 'View Orders', 'class' => 'btn btn-primary']);
+
+    ?>
+    <h2>
+        Update Orders
+    </h2>
+    <h2>Place orders using this form</h2>
+    <?php echo $this->tag->form("order/edit/?id=" . $id); ?>
+    <p>
+        <label for="name">Product Name</label>
+        <?php echo $this->tag->textfield([
+            "product_name", "placeholder" => "Product name",
+            "class" => "form-control", "disabled"=>true,"value" => $data['product_name']
+        ]); ?>
+    </p>
+    <p>
+        <label for="name">product_id</label>
+        <?php echo $this->tag->textfield([
+            "product_id", "placeholder" => "Product name",
+            "class" => "form-control","disabled"=>true, "value" => $data['product_id']
+        ]); ?>
+    </p>
+    <br>
+    <p>
+        <label for="customer_name">Customer-Name</label>
+        <?php echo $this->tag->textfield
+        (["customer_name", "class" => "form-control","disabled"=>true,"value" => $data['customer_name']]); ?>
+    </p>
+
+    <p>
+        <label for="quantity">Quantity</label>
+        <?php echo $this->tag->numericfield
+        (["quantity", "class" => "form-control","disabled"=>true,"value" => $data['quantity']]); ?>
+    </p>
+    <p>
+        <label for="status">Choose Status:</label>
+
+        <select name="status" id="status" class="form-control">
+            <option value="Paid">Paid</option>
+            <option value="Processing">Processing</option>
+            <option value="Dispatched">Dispatched</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Refunded">Refunded</option>
+
+        </select>
+    </p>
+    <p>
+        <?php echo $this->tag->submitButton(["Update Order", 'class' => 'btn btn-primary']); ?>
+    </p>
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<form action ="/order/search" method="POST">
+<label for="status">Choose Status:</label>
+
+<select name="status" id="status" class="form-control">
+  <option value="Paid">Paid</option>
+  <option value="Processing">Processing</option>
+  <option value="Dispatched">Dispatched</option>
+  <option value="Shipped">Shipped</option>
+  <option value="Refunded">Refunded</option>
+  
+</select>
+<label for="date">Select date range:</label>
+
+<select name="date" id="date" class="form-control">
+  <option value="today">Today</option>
+  <option value="thisweek">This week</option>
+  <option value="thisMonth">This Month</option>
+  <option value="custom">Custom</option>
+</select>
+<br>
+<h4>Form custom dates</h4>
+<input type="text" placeholder="Start-date[2023-05-12]" name="startd" class="form-control">
+<br>
+<input type="text" placeholder="End-date[2023-05-12]" name="endd" class="form-control">
+<br>
+
+<input type ="submit" value="Search" class="btn btn-info">
+</form>
+<br>
+<label for="status"></label>
+<?php
+
+
+echo "<table class='table table-success table-striped'>
+        <thead>
+            <th>Customer-Name</th>
+            <th>Product-name</th>
+            <th>Product-id</th>
+            <th>Variaion</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>";
+foreach ($data as $key => $value) {
+    echo "<tr><td>" . $value['customer_name'] . "</td><td>" . $value['product_name'] .
+            "</td><td>" . $value['product_id'] .
+        "</td><td>" . $value['variaion'] . "</td><td>" . $value['quantity'] . "</td><td>" . $value['date'] .
+        "</td><td>" . $value['status'] . "</td><td>
+        <a href ='/order/delete?id=" . $value['_id'] . "'>Delete</a>
+        <a href ='/order/update?id=" . $value['_id'] . "'>Update</a></td></tr>";
+}
+echo "</tbody></table>";
+
+echo $this->tag->linkTo(['product', 'Add products Here!', 'class' => 'm-3 btn btn-primary']);
+echo $this->tag->linkTo(['order', 'Place Order Here!', 'class' => 'm-3 btn btn-primary']);
+echo  $this->tag->linkTo(['index', 'Homepage', 'class' => 'm-3 btn btn-primary']);
+?>

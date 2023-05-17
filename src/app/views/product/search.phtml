@@ -1,0 +1,18 @@
+<?php
+
+echo "<table class='table table-success table-striped'> <tr><th> Name </th><th>Category Name</th>
+        <th>Price</th><th>Stock</th><th>Attribute Price</th><th>Action</th>
+        </tr>";
+
+
+foreach ($data as $current) {
+    echo "<tr><td>$current[name]</td><td>$current[category]</td><td>$current[price]</td><td>$current[stock]</td>
+<td>$current[attriprice]</td><td><a href ='/product/delete?id=" . $current['_id'] . "'>Delete</a>
+<a href ='/product/update?id=" . $current['_id'] . "'>Update</a></td></tr>";
+}
+
+echo "</tbody></table>";
+echo $this->tag->linkTo(
+    'product/view',
+    'view Up Here!'
+);
